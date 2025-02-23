@@ -162,21 +162,19 @@ def convert_to_decimal(number_system, number_type, number):
 
     
 def to_decimal(number, base):
-    """Convert a number from any base to decimal."""
     try:
-        if '.' in number:  # Fractional number
+        if '.' in number:  
             integer_part, fractional_part = number.split('.')
             integer_value = int(integer_part, base)
             fractional_value = sum(int(digit, base) / (base ** (i + 1)) for i, digit in enumerate(fractional_part))
             return integer_value + fractional_value
-        else:  # Integer number
+        else: 
             return int(number, base)
     except ValueError:
         print("Invalid number for the given base.")
         return None
 
 def from_decimal(decimal_number, base, is_fractional=False):
-    """Convert a decimal number to any given base."""
     if not is_fractional:
         return convert_integer_part(int(decimal_number), base)
     else:
@@ -185,7 +183,6 @@ def from_decimal(decimal_number, base, is_fractional=False):
         return convert_integer_part(integer_part, base) + '.' + convert_fractional_part(fractional_part, base)
 
 def convert_integer_part(integer_part, base):
-    """Convert integer part of a number to any base."""
     if integer_part == 0:
         return '0'
     digits = []
@@ -195,7 +192,6 @@ def convert_integer_part(integer_part, base):
     return ''.join(digits[::-1])
 
 def convert_fractional_part(fractional_part, base, precision=5):
-    """Convert fractional part of a number to any base."""
     result = []
     while fractional_part > 0 and len(result) < precision:
         fractional_part *= base
@@ -205,7 +201,6 @@ def convert_fractional_part(fractional_part, base, precision=5):
     return ''.join(result)
 
 def get_base(system):
-    """Get the numeric base for the given system."""
     if system == "binary":
         return 2
     elif system == "octal":
@@ -223,7 +218,6 @@ def get_base(system):
         return None
 
 def main():
-    """Main function to get user input and convert the number."""
     input_system = input("Enter input number system (binary, octal, hexadecimal, radix-r where r=2^n): ").strip().lower()
     output_system = input("Enter output number system (binary, octal, hexadecimal, radix-r where r=2^n): ").strip().lower()
     number_type = input("Choose number type (integer/fractional): ").strip().lower()
