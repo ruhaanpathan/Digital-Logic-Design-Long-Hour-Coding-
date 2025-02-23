@@ -16,7 +16,6 @@ def find_10s_complement(decimal_number):
     return ten_complement
 
 def main():
-    """Main function to handle input and output."""
     decimal_number = input("Enter a decimal number (with or without decimal point): ").strip()
 
     if not all(c.isdigit() or c == '.' for c in decimal_number):
